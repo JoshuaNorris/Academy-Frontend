@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <div>
-        <a href="${BASE_URL}/vite.svg" target="_blank">
+        <a href={`${BASE_URL}/vite.svg`} target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
         <a href="https://react.dev" target="_blank">
