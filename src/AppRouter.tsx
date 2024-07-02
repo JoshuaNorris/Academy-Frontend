@@ -4,8 +4,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import BookPage from './pages/BookPage/BookPage';
 import BooksOverviewPage from './pages/BookOverviewPage/BookOverviewPage';
 import HomePage from './pages/HomePage/HomePage';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
+import LoginPage from './pages/LoginPage/LoginPage';
+import RegisterPage from './pages/RegisterPage/RegisterPage';
 import NotFoundPage from './pages/NotFoundPage';
 const { BASE_URL } = import.meta.env;
 
