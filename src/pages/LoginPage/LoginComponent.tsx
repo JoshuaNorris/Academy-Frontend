@@ -29,7 +29,16 @@ const LoginComponent: React.FC = () => {
     };
 
     const onSubmitSignin = async () => {
+        const user = attemptLogin();
+        if (user !== undefined) {
+            loginRequest.Email = "";
+            loginRequest.Password = "";
+            // Change Page.
+        }
 
+    }
+
+    const attemptLogin = async (): Promise<User | undefined> => {
         try {
             const response = await fetch('http://localhost:5262/Users/login', {
                 method: 'POST',
@@ -38,12 +47,12 @@ const LoginComponent: React.FC = () => {
                 },
                 body: JSON.stringify(loginRequest)
             });
-            const data = await response.json() as User;
-            console.log(typeof data);
-            console.log("type");
-            console.log(data);
+            const data = await response.json()
+            const user = data as User;
+            return user;
         } catch (error) {
             console.error('Error fetching data:', error);
+            return undefined;
         }
     }
 
