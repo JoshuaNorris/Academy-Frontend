@@ -8,6 +8,24 @@ export type User = {
     UserRole: UserRole;
 }
 
+export type RegisterRequest = {
+    Email: string;
+    DisplayName: string;
+    FirstName: string;
+    LastName: string;
+    Password: string;
+    UserRole: UserRole;
+}
+
+export type RegisterPage = {
+    Email: string;
+    DisplayName: string;
+    FirstName: string;
+    LastName: string;
+    Password: string;
+    ConfirmPassword: string;
+}
+
 export type LoginRequest = {
     Email: string;
     Password: string;
