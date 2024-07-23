@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import BookPage from './pages/BookPage/BookPage';
 import BooksOverviewPage from './pages/BookOverviewPage/BookOverviewPage';
@@ -7,23 +7,30 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
 import NotFoundPage from './pages/NotFoundPage';
 const { BASE_URL } = import.meta.env;
-import { User, UserRole, ANONYMOUS_USER } from './models/User';
+import { User, ANONYMOUS_USER } from './models/User';
 
 const App: React.FC = () => {
-    const [User, setUser] = useState<User>(ANONYMOUS_USER);
+    const [user, setUser] = useState<User>(ANONYMOUS_USER);
+
+    useEffect(() => {
+        console.log("Updated user state:", user);
+    }, [user]);
+
+    const completeLogin = ( newUser: User) => {
+        setUser(newUser);
+    }
 
     return (
         <BrowserRouter>
             <Routes>
-                <Route path={`${BASE_URL}/`} element={<HomePage />} />
+                <Route path={`${BASE_URL}/`} element={<HomePage user={user}/>} />
                 <Route path={`${BASE_URL}/book/:title`} element={<BookPage />} />
                 <Route path={`${BASE_URL}/books`} element={<BooksOverviewPage />} />
-                <Route path={`${BASE_URL}/login`} element={<LoginPage />} />
+                <Route path={`${BASE_URL}/login`} element={<LoginPage completeLogin={completeLogin} />} />
                 <Route path={`${BASE_URL}/register`} element={<RegisterPage />} />
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </BrowserRouter>
-        
     );
 };
 

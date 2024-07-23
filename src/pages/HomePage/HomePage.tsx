@@ -1,25 +1,34 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import NavigationBar from '../CommonComponents/NavigationBar';
 import WelcomeBody from './WelcomeBodyComponent';
 import LoginorRegister from './LoginorRegisterComponent';
 import Suggestions from './SuggestionsComponent';
+import { User } from '../../models/User';
 
-const HomePage: React.FC = () => {
-  return (
-    <section className='flex flex-col h-screen'>
+interface HomePageProps {
+    user: User
+}
 
-      <NavigationBar />
+const HomePage: React.FC<HomePageProps> = ({ user }) => {
 
-      {/* Page Flexbox */}
-      <div className="flex flex-col">
+    useEffect(() => {
+        console.log('user changed')
+    }, [user])
 
-        <WelcomeBody />
-        <LoginorRegister />
-        <Suggestions />
+    console.log("HomePage received user:", user);
+    return (
+        <section className='flex flex-col h-screen'>
+            <NavigationBar user={user}/>
 
-      </div>
-    </section>
-  );
+            <div className="flex flex-col">
+                <WelcomeBody />
+                <p>{user.FirstName}</p>
+                <LoginorRegister />
+                <Suggestions />
+
+            </div>
+        </section>
+    );
 };
 
 export default HomePage;
