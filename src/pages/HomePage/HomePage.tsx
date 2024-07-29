@@ -12,16 +12,22 @@ interface HomePageProps {
 const HomePage: React.FC<HomePageProps> = ({ user }) => {
 
     useEffect(() => {
-        console.log('user changed')
-    }, [user])
+        console.log("HomePage mounted");
+        return () => {
+            console.log("HomePage unmounted");
+        };
+    }, []);
+
 
     console.log("HomePage received user:", user);
     return (
         <section className='flex flex-col h-screen'>
-            <NavigationBar user={user}/>
+            {/* <NavigationBar user={user}/> */}
 
             <div className="flex flex-col">
                 <WelcomeBody />
+                <p>Hello</p>
+                <p>{user.LastName}</p>
                 <p>{user.FirstName}</p>
                 <LoginorRegister />
                 <Suggestions />

@@ -18,6 +18,12 @@ const App: React.FC = () => {
 
     const completeLogin = ( newUser: User) => {
         setUser(newUser);
+        // setUser({
+        //     Email: newUser.Email,
+        //     UserName: newUser.UserName,
+        //     FirstName: newUser.FirstName,
+        //     LastName: newUser.LastName
+        // });
     }
 
     return (
